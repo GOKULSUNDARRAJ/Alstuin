@@ -10,4 +10,10 @@
         android:icon="@drawable/ic_baseline_settings_24"
         ></item>
 
+    <item
+        android:title="Update Profile"
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_baseline_settings_24"
+        ></item>
+
 </menu>

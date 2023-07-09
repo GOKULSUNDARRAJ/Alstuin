@@ -10,10 +10,6 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always"></item>
 
-    <item
-        android:title="Settings"
-        android:id="@+id/settings"
-        android:icon="@drawable/ic_baseline_settings_24"
-        ></item>
+
 
 </menu>

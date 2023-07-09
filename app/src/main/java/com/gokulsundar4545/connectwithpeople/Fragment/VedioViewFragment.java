@@ -66,6 +66,20 @@ public class VedioViewFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        vedioAdapter.stopListening();
+        vedioAdapter.startListening();
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        vedioAdapter.startListening();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        vedioAdapter.startListening();
+
     }
 }

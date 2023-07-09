@@ -4,17 +4,22 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/download"
+        android:icon="@mipmap/logo1"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/download"
+        android:roundIcon="@mipmap/logo1"
         android:supportsRtl="true"
         android:theme="@style/Theme.ConnectWithpeople">
-        <activity android:name=".PayMentActivity"></activity>
+        <activity android:name=".Adapter.VedioComment"></activity>
+        <activity android:name=".MainActivity2"></activity>
+        <activity android:name=".EditUserProfile" />
+        <activity android:name=".CommentActivity2" />
+        <activity android:name=".Adapter.ZoomActivity" />
+        <activity android:name=".PayMentActivity" />
         <activity android:name=".SpinnerActvity" />
         <activity
             android:name=".ChartActivity"
@@ -38,21 +43,15 @@
             android:name=".MainActivity"
             android:exported="true" />
 
-
-
-
         <provider
-            android:authorities="com.gokulsundar4545.connectwithpeople.firebaseapp.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.gokulsundar4545.connectwithpeople.firebaseapp.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
-
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/paths"/>
+                android:resource="@xml/paths" />
         </provider>
-
-
 
         <service
             android:name=".MyFirebaseMessaging"
@@ -65,10 +64,7 @@
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_launcher_background"
-           >
-
-        </meta-data>
+            android:resource="@drawable/ic_launcher_background" />
         <!--
  Set color used with incoming notification messages. This is used when no color is set for the incoming
              notification message. See README(https://goo.gl/6BKBk7) for more.

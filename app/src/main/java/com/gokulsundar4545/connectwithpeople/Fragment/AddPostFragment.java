@@ -21,12 +21,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.gokulsundar4545.connectwithpeople.Model.Post;
 import com.gokulsundar4545.connectwithpeople.Model.User;
 import com.gokulsundar4545.connectwithpeople.Model.VedioMode;
 import com.gokulsundar4545.connectwithpeople.R;
-
 import com.gokulsundar4545.connectwithpeople.databinding.FragmentAddBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -121,6 +121,17 @@ public class AddPostFragment extends Fragment {
                 startActivityForResult(intent,PICK_VEDIO);
             }
         });
+
+
+
+        binding.profileImage.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Fragment proFra=new ProfileFragment();
+                 FragmentTransaction fm=getActivity().getSupportFragmentManager().beginTransaction();
+                 fm.replace(R.id.container,proFra).commit();
+             }
+         });
 
 
         progressDialog.setProgressStyle(progressDialog.STYLE_SPINNER);
@@ -258,6 +269,10 @@ public class AddPostFragment extends Fragment {
                                     binding.vediobtn.setTextColor(getContext().getResources().getColor(R.color.white));
                                     binding.vediobtn.setEnabled(false);
                                     Toast.makeText(getContext(), "Vedio Posted Successfully", Toast.LENGTH_SHORT).show();
+                                    VedioViewFragment pf=new VedioViewFragment();
+
+                                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                                    ft.replace(R.id.container,pf).commit();
                                 }
                             });
                         }
@@ -297,7 +312,12 @@ public class AddPostFragment extends Fragment {
                                 binding.postbtn.setBackgroundDrawable(ContextCompat.getDrawable(getContext(),R.drawable.btn_input_ww));
                                 binding.postbtn.setTextColor(getContext().getResources().getColor(R.color.white));
                                 binding.postbtn.setEnabled(false);
+
                                 Toast.makeText(getContext(), "Posted Successfully", Toast.LENGTH_SHORT).show();
+                                HomeFragment pf=new HomeFragment();
+
+                                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                                ft.replace(R.id.container,pf).commit();
                             }
                         });
                     }

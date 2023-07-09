@@ -187,18 +187,5 @@ public class SearchFragment extends Fragment {
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
-            case R.id.settings:
-                auth.signOut();
-                Intent intent=new Intent(getActivity(),LoginActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-                break;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

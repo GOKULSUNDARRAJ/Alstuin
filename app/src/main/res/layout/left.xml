@@ -49,10 +49,13 @@
         android:id="@+id/timetv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/rv"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="67dp"
+        android:layout_toStartOf="@+id/isseentv"
         android:text="14/2/32 05:56pm"
         android:textColor="@color/black"
-        android:layout_marginLeft="130dp"
-        android:layout_below="@id/rv"
         android:textSize="12sp"></TextView>
 
     <TextView

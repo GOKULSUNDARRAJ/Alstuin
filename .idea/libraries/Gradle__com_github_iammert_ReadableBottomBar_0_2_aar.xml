@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.iammert:ReadableBottomBar:0.2@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-6.7.1-bin/caches/transforms-2/files-2.1/6e42996b3d5cf632dbd3a32e78b8a98f/jetified-ReadableBottomBar-0.2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.7.1-bin/caches/transforms-2/files-2.1/6e42996b3d5cf632dbd3a32e78b8a98f/jetified-ReadableBottomBar-0.2/res" />
-      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.7.1-bin/caches/transforms-2/files-2.1/6e42996b3d5cf632dbd3a32e78b8a98f/jetified-ReadableBottomBar-0.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-6.7.1-bin/caches/transforms-2/files-2.1/23b9cee70ef365196b66e27a172654a4/jetified-ReadableBottomBar-0.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.7.1-bin/caches/transforms-2/files-2.1/23b9cee70ef365196b66e27a172654a4/jetified-ReadableBottomBar-0.2/res" />
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.7.1-bin/caches/transforms-2/files-2.1/23b9cee70ef365196b66e27a172654a4/jetified-ReadableBottomBar-0.2/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

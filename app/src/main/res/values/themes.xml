@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.ConnectWithpeople" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.ConnectWithpeople" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/black</item>
@@ -32,6 +32,11 @@
         <item name="colorPrimary">@color/yellow</item>
         <!-- background -->
         <item name="colorControlHighlight">@color/Accent</item>
+    </style>
+
+    <style name="DialoAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_out</item>
     </style>
 
 

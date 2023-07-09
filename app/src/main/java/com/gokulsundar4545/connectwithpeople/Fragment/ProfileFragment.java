@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.gokulsundar4545.connectwithpeople.Adapter.FollowersAdapter;
+import com.gokulsundar4545.connectwithpeople.EditUserProfile;
 import com.gokulsundar4545.connectwithpeople.LoginActivity;
 import com.gokulsundar4545.connectwithpeople.Model.Follow;
 import com.gokulsundar4545.connectwithpeople.Model.User;
@@ -203,23 +204,8 @@ public class ProfileFragment extends Fragment {
     }
 
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
 
-        inflater.inflate(R.menu.reward,menu);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
-            case R.id.Reward:
-                Intent intent=new Intent(getActivity(), PayMentActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-                break;
 
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

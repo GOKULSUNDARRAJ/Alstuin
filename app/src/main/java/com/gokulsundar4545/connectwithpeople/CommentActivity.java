@@ -6,15 +6,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 
+import com.gokulsundar4545.Client;
+import com.gokulsundar4545.Data;
+import com.gokulsundar4545.Sender;
 import com.gokulsundar4545.connectwithpeople.Adapter.CommentAdapter;
 import com.gokulsundar4545.connectwithpeople.Model.Comment;
 import com.gokulsundar4545.connectwithpeople.Model.Notification;
 import com.gokulsundar4545.connectwithpeople.Model.Post;
 import com.gokulsundar4545.connectwithpeople.Model.User;
+
 import com.gokulsundar4545.connectwithpeople.databinding.ActivityCommentBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,8 +35,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Date;
 
-import retrofit2.Call;
-import retrofit2.Callback;
+
 
 public class CommentActivity extends AppCompatActivity {
 
@@ -119,10 +123,13 @@ public class CommentActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
+                APIService apiService;
+
                 Comment comment=new Comment();
                 comment.setCommentbody(binding.commentEd.getText().toString());
                 comment.setCommentedAt(new Date().getTime());
                 comment.setCommentedBy(FirebaseAuth.getInstance().getUid());
+
 
 
                 database.getReference()

@@ -13,6 +13,7 @@ import com.github.marlonlom.utilities.timeago.TimeAgo;
 import com.gokulsundar4545.connectwithpeople.Model.Comment;
 import com.gokulsundar4545.connectwithpeople.Model.User;
 import com.gokulsundar4545.connectwithpeople.R;
+
 import com.gokulsundar4545.connectwithpeople.databinding.CommentSampleBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -80,7 +81,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.viewHold
         public viewHolder(@NonNull  View itemView) {
             super(itemView);
 
-            binding=CommentSampleBinding.bind(itemView);
+            binding= CommentSampleBinding.bind(itemView);
         }
     }
 }

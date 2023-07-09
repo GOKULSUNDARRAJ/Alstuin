@@ -69,7 +69,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.viewHolder> 
                             .into(holder.binding.profileImage);
                     holder.binding.name.setText(user.getName());
 
-                    holder.binding.storyimage.setOnClickListener(new View.OnClickListener() {
+                    holder.binding.profileImage.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 

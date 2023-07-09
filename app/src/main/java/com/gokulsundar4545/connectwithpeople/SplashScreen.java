@@ -1,11 +1,8 @@
 package com.gokulsundar4545.connectwithpeople;
 
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -14,7 +11,7 @@ public class SplashScreen extends AppCompatActivity {
 
 
     private  static  int SPLASH_TIME_OUT=1000;
-    SharedPreferences msharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,17 +21,17 @@ public class SplashScreen extends AppCompatActivity {
         Handler handler;
 
 
-
-        handler=new Handler();
-        handler.postDelayed(new Runnable() {
+        Runnable runnable=new Runnable() {
             @Override
             public void run() {
-
                 Intent intent=new Intent(SplashScreen.this,LoginActivity.class);
-                    startActivity(intent);
-                    finish();
+                startActivity(intent);
+                finish();
             }
-        },SPLASH_TIME_OUT);
+        };
+
+        handler=new Handler();
+        handler.postDelayed(runnable,SPLASH_TIME_OUT);
 
     }
 

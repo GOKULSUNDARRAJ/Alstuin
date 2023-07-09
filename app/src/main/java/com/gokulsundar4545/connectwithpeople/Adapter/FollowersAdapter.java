@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gokulsundar4545.connectwithpeople.Model.Follow;
 import com.gokulsundar4545.connectwithpeople.Model.User;
 import com.gokulsundar4545.connectwithpeople.R;
+
 import com.gokulsundar4545.connectwithpeople.databinding.FriendRvSampleBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

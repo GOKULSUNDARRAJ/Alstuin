@@ -631,16 +631,6 @@ public class ChartActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.settings:
-                auth.signOut();
-                break;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
 
     @Override

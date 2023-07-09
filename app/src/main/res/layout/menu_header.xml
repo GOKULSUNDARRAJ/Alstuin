@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="@color/black"
+    android:background="@color/blue"
     android:paddingLeft="15dp">
 
 
@@ -11,8 +11,9 @@
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
-        android:text="@string/app_name" />
+        android:text="To connect Student and Alumini" />
 
     <TextView
         android:id="@+id/app_name"
@@ -20,24 +21,28 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="@string/app_name"
-        android:textColor="#000000"
+        android:textColor="@color/white"
         android:textSize="24sp" />
 
     <ImageView
         android:layout_above="@id/app_name"
         android:layout_height="40dp"
         android:layout_width="40dp"
-        android:src="@drawable/defe" />
+        android:src="@mipmap/logo1" />
 
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
         android:layout_width="160dp"
         android:layout_height="175dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="-36dp"
-        android:layout_marginBottom="-28dp"
-        android:src="@drawable/mm" />
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="-2dp"
+        android:layout_marginRight="-2dp"
+        android:layout_marginBottom="18dp"
+        android:src="@mipmap/logo1" />
 
 
 </RelativeLayout>

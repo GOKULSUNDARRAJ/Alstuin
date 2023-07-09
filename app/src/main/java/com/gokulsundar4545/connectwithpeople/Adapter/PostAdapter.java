@@ -1,17 +1,22 @@
 package com.gokulsundar4545.connectwithpeople.Adapter;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +29,7 @@ import com.gokulsundar4545.connectwithpeople.Model.Notification;
 import com.gokulsundar4545.connectwithpeople.Model.Post;
 import com.gokulsundar4545.connectwithpeople.Model.User;
 import com.gokulsundar4545.connectwithpeople.R;
+
 
 import com.gokulsundar4545.connectwithpeople.databinding.DashboardRvBinding;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -75,9 +81,82 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
         holder.binding.description.setText(model.getPostDescription());
 
 
+        holder.binding.menubar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog=new Dialog(context);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.deleteoption);
 
+                LinearLayout shareoption=dialog.findViewById(R.id.deleteLayout);
+                shareoption.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        BitmapDrawable bitmapDrawable=(BitmapDrawable)holder.binding.postimage.getDrawable();
+                        if (bitmapDrawable==null){
+                            String des=holder.binding.description.getText().toString();
+                            shareTextOnly(des);
+                        }else {
+                            String des=holder.binding.description.getText().toString();
+                            Bitmap bitmap=bitmapDrawable.getBitmap();
+                            shareTextandImage(des,bitmap);
+                        }
+                    }
+                });
+                dialog.show();
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().getAttributes().windowAnimations=R.style.DialoAnimation;
+                dialog.getWindow().setGravity(Gravity.BOTTOM);
+
+            }
+        });
+
+
+        holder.binding.menubar.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                holder.binding.post.setBackgroundColor(Color.DKGRAY);
+                AlertDialog.Builder builder=new AlertDialog.Builder(context);
+                builder.setTitle("Delete");
+                builder.setMessage("Do you want to delete the Post?");
+                builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        FirebaseDatabase.getInstance().getReference()
+                                .child("posts")
+                                .child(model.getPostedBy())
+                                .child(model.getPostId())
+                                .removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+
+                                Toast.makeText(context, "Post Deleted", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull  Exception e) {
+
+                                Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+                builder.setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        holder.binding.post.setBackgroundColor(Color.WHITE);
+                        dialogInterface.dismiss();
+                    }
+                });
+                builder.create().show();
+                return true;
+            }
+        });
 
         holder.binding.comment.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context, CommentActivity.class);
@@ -85,6 +164,19 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                 intent.putExtra("postedBy",model.getPostedBy());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
+            }
+        });
+
+        holder.binding.postimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(context, ZoomActivity.class);
+                intent.putExtra("postId",model.getPostId());
+                intent.putExtra("postedBy",model.getPostedBy());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+
             }
         });
 
@@ -139,6 +231,70 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                             holder.binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_thumb_up_25,0,0,0);
                         }else {
                             holder.binding.like.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    FirebaseDatabase.getInstance().getReference()
+                                            .child("posts")
+                                            .child(model.getPostId())
+                                            .child("likes")
+                                            .child(FirebaseAuth.getInstance().getUid())
+                                            .setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            FirebaseDatabase.getInstance().getReference()
+                                                    .child("posts")
+                                                    .child(model.getPostId())
+                                                    .child("postLike")
+                                                    .setValue(model.getPostLike()+1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    holder.binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_thumb_up_25,0,0,0);
+
+                                                    Notification notification=new Notification();
+                                                    notification.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                                    notification.setNotificationAt(new Date().getTime());
+                                                    notification.setPostId(model.getPostId());
+                                                    notification.setPostBy(model.getPostedBy());
+                                                    notification.setType("like");
+
+                                                    FirebaseDatabase.getInstance().getReference()
+                                                            .child("notification")
+                                                            .child(model.getPostedBy())
+                                                            .push()
+                                                            .setValue(notification);
+                                                }
+                                            });
+
+                                        }
+                                    });
+
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull  DatabaseError error) {
+
+                    }
+                });
+
+
+
+        FirebaseDatabase.getInstance().getReference()
+                .child("posts")
+                .child(model.getPostId())
+                .child("likes")
+                .child(FirebaseAuth.getInstance().getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull  DataSnapshot snapshot) {
+
+                        if (snapshot.exists()){
+                            holder.binding.like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_thumb_up_25,0,0,0);
+                        }else {
+                            holder.binding.postimage.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
 
